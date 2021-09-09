@@ -11,8 +11,27 @@ void printMenu()
 		<< "[5] Edit CS" << endl
 		<< "[6] Save" << endl
 		<< "[7] Load" << endl
-		<< "[0] Exit" << endl;
+		<< "[0] Exit" << endl
+		<< "Choose action: ";
 }
+
+struct Pipe
+{
+	int id;
+	double length;
+	double diameter;
+	bool repair;
+};
+
+struct CS
+{
+	int id;
+	string name;
+	int numOfShops;
+	int numOfShopsInWork;
+
+
+};
 
 int main()
 {
