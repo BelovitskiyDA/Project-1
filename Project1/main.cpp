@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include "Pipe.h"
+#include "CS.h"
 
 using namespace std;
 
@@ -16,22 +18,6 @@ void printMenu()
 		<< "Choose action: ";
 }
 
-struct Pipe
-{
-	int id;
-	double length;
-	double diameter;
-	bool repair;
-};
-
-struct CS
-{
-	int id;
-	string name;
-	int numOfShops;
-	int numOfShopsInWork;
-	double efficiency;
-};
 
 Pipe addPipe()
 {
