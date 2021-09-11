@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -29,12 +30,44 @@ struct CS
 	string name;
 	int numOfShops;
 	int numOfShopsInWork;
-
-
+	double efficiency;
 };
+
+Pipe addPipe()
+{
+	Pipe p;
+	cout << "id: ";
+	cin >> p.id;
+	cout << "length: ";
+	cin >> p.length;
+	cout << "diameter: ";
+	cin >> p.diameter;
+	cout << "repair: ";
+	cin >> p.repair;
+	return p;
+}
+
+CS addCS()
+{
+	CS st;
+	cout << "id: ";
+	cin >> st.id;
+	cout << "name: ";
+	cin >> st.name;
+	cout << "numOfShops: ";
+	cin >> st.numOfShops;
+	cout << "numOfShopsInWork: ";
+	cin >> st.numOfShopsInWork;
+	cout << "efficiency: ";
+	cin >> st.efficiency;
+	return st;
+}
 
 int main()
 {
+	vector <Pipe> baseOfPipes;
+	vector <CS> baseOfCS;
+
 	while (true)
 	{
 		printMenu();
@@ -43,13 +76,15 @@ int main()
 		switch (i)
 		{
 		case 1:
-		{
-			//addPipe();
+		{	
+			baseOfPipes.resize(size(baseOfPipes) + 1);
+			baseOfPipes[size(baseOfPipes) - 1] = addPipe();
 			break;
 		}
 		case 2:
 		{
-			//addCS();
+			baseOfCS.resize(size(baseOfCS) + 1);
+			baseOfCS[size(baseOfCS) - 1] = addCS();
 			break;
 		}
 		case 3:
