@@ -59,6 +59,13 @@ int main()
 		printMenu();
 		int i = 0;
 		cin >> i;
+		if (cin.fail())
+		{
+			cout << "Wrong action" << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			continue;
+		}
 		switch (i)
 		{
 		case 1:

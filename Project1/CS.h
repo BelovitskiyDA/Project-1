@@ -4,7 +4,7 @@ class CS
 {
 public:
 	int id;
-	string name;
+	std::string name;
 	int numOfShops;
 	int numOfShopsInWork;
 	double efficiency;
