@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "Pipe.h"
 #include "CS.h"
 
@@ -49,6 +50,23 @@ CS addCS()
 	return st;
 }
 
+void SavePipe(ofstream& fout, Pipe& p)
+{
+	fout << p.id << endl
+		<< p.length << endl
+		<< p.diameter << endl
+		<< p.repair << endl;
+}
+
+void SaveCS(ofstream& fout, CS& st)
+{
+	fout << st.id << endl
+		<< st.name << endl
+		<< st.numOfShops << endl
+		<< st.numOfShopsInWork << endl
+		<< st.efficiency << endl;
+}
+
 int main()
 {
 	vector <Pipe> baseOfPipes;
@@ -70,14 +88,12 @@ int main()
 		{
 		case 1:
 		{	
-			baseOfPipes.resize(size(baseOfPipes) + 1);
-			baseOfPipes[size(baseOfPipes) - 1] = addPipe();
+			baseOfPipes.push_back(addPipe());
 			break;
 		}
 		case 2:
 		{
-			baseOfCS.resize(size(baseOfCS) + 1);
-			baseOfCS[size(baseOfCS) - 1] = addCS();
+			baseOfCS.push_back(addCS());
 			break;
 		}
 		case 3:
@@ -97,12 +113,28 @@ int main()
 		}
 		case 6:
 		{
-			//Save();
+
+			ofstream fout;
+			fout.open("Pipe.txt", ios::out);
+			if (fout.is_open())
+			{
+				for (Pipe& p : baseOfPipes)
+					SavePipe(fout, p);
+			}
+			fout.close();
+
+			fout.open("CS.txt", ios::out);
+			if (fout.is_open())
+			{
+				for (CS& st : baseOfCS)
+					SaveCS(fout, st);
+			}
+			fout.close();
 			break;
 		}
 		case 7:
 		{
-			//Load();
+			
 			break;
 		}
 		case 0:
