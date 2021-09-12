@@ -67,6 +67,29 @@ void SaveCS(ofstream& fout, CS& st)
 		<< st.efficiency << endl;
 }
 
+Pipe LoadPipe(ifstream& fin)
+{
+	Pipe p;
+	fin >> p.id
+		>> p.length
+		>> p.diameter
+		>> p.repair;
+
+	return p;
+}
+
+CS LoadCS(ifstream& fin)
+{
+	CS st;
+	fin >> st.id
+		>> st.name
+		>> st.numOfShops
+		>> st.numOfShopsInWork
+		>> st.efficiency;
+
+	return st;
+}
+
 int main()
 {
 	vector <Pipe> baseOfPipes;
@@ -118,6 +141,7 @@ int main()
 			fout.open("Pipe.txt", ios::out);
 			if (fout.is_open())
 			{
+				fout << baseOfPipes.size() << endl;
 				for (Pipe& p : baseOfPipes)
 					SavePipe(fout, p);
 			}
@@ -126,6 +150,7 @@ int main()
 			fout.open("CS.txt", ios::out);
 			if (fout.is_open())
 			{
+				fout << baseOfCS.size() << endl;
 				for (CS& st : baseOfCS)
 					SaveCS(fout, st);
 			}
@@ -134,7 +159,26 @@ int main()
 		}
 		case 7:
 		{
-			
+			ifstream fin;
+			fin.open("Pipe.txt", ios::in);
+			if (fin.is_open())
+			{
+				int j = 0;
+				fin >> j;
+				while (j--)
+					baseOfPipes.push_back(LoadPipe(fin));
+			}
+			fin.close();
+
+			fin.open("CS.txt", ios::in);
+			if (fin.is_open())
+			{
+				int k = 0;
+				fin >> k;
+				while (k--)
+					baseOfCS.push_back(LoadCS(fin));
+			}
+			fin.close();
 			break;
 		}
 		case 0:
